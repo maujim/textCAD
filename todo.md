@@ -64,19 +64,19 @@
   - [x] Confirm chat and thinking box reflect the latest interaction
 
 ## Testing
-- [ ] **Unit tests for individual components**
-  - [ ] Test `<ModelViewer>`: Renders mesh and handles clicks
-  - [ ] Test `<ChatWindow>`: Submits input and displays messages
-  - [ ] Test OpenCascade.js functions: Model loading, modification, mesh generation
-- [ ] **Integration tests for combined functionality**
-  - [ ] Test command flow: "Add a hole" → AI response → updated model in viewer
-  - [ ] Test revision history: Create versions, select, and revert
-- [ ] **Test error handling scenarios**
-  - [ ] Simulate AI API failures or invalid responses
-  - [ ] Test impossible modifications (e.g., hole in a tiny area)
-- [ ] **User acceptance testing**
-  - [ ] Test with sample commands (e.g., "Move this part", "Add a screw hole")
-  - [ ] Gather feedback on usability and adjust UI if needed
+- [x] **Unit tests for individual components**
+  - [x] Test `<ModelViewer>`: Renders mesh and handles clicks
+  - [x] Test `<ChatWindow>`: Submits input and displays messages
+  - [x] Test OpenCascade.js functions: Model loading, modification, mesh generation
+- [x] **Integration tests for combined functionality**
+  - [x] Test command flow: "Add a hole" → AI response → updated model in viewer
+  - [x] Test revision history: Create versions, select, and revert
+- [x] **Test error handling scenarios**
+  - [x] Simulate AI API failures or invalid responses
+  - [x] Test impossible modifications (e.g., hole in a tiny area)
+- [x] **User acceptance testing**
+  - [x] Test with sample commands (e.g., "Move this part", "Add a screw hole")
+  - [x] Gather feedback on usability and adjust UI if needed
 
 ## Deployment
 - [ ] **Prepare the application for production**
