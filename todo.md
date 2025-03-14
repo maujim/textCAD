@@ -19,10 +19,10 @@
   - [x] Import OpenCascade.js into the project (e.g., via CDN or npm)
   - [x] Load a sample CAD model (e.g., a cube created programmatically with `BRepPrimAPI_MakeBox`)
   - [x] Implement functions to generate a mesh from the CAD model for rendering
-- [ ] **Set up Three.js for 3D rendering**
-  - [ ] Create a `<ModelViewer>` component in `src/components/ModelViewer.js`
-  - [ ] Render the initial CAD model mesh using `<mesh>` and `BufferGeometry`
-  - [ ] Add `<OrbitControls />` for model interaction (rotate, zoom)
+- [x] **Set up Three.js for 3D rendering**
+  - [x] Create a `<ModelViewer>` component in `src/components/ModelViewer.js`
+  - [x] Render the initial CAD model mesh using `<mesh>` and `BufferGeometry`
+  - [x] Add `<OrbitControls />` for model interaction (rotate, zoom)
 - [ ] **Create user interface components**
   - [ ] `<ChatWindow>` in `src/components/ChatWindow.js`: For user input and conversation history
   - [ ] `<ThinkingBox>` in `src/components/ThinkingBox.js`: To display AI reasoning
