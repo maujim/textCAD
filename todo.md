@@ -23,10 +23,10 @@
   - [x] Create a `<ModelViewer>` component in `src/components/ModelViewer.js`
   - [x] Render the initial CAD model mesh using `<mesh>` and `BufferGeometry`
   - [x] Add `<OrbitControls />` for model interaction (rotate, zoom)
-- [ ] **Create user interface components**
-  - [ ] `<ChatWindow>` in `src/components/ChatWindow.js`: For user input and conversation history
-  - [ ] `<ThinkingBox>` in `src/components/ThinkingBox.js`: To display AI reasoning
-  - [ ] `<RevisionDropdown>` in `src/components/RevisionDropdown.js`: To manage model versions
+- [x] **Create user interface components**
+  - [x] `<ChatWindow>` in `src/components/ChatWindow.js`: For user input and conversation history
+  - [x] `<ThinkingBox>` in `src/components/ThinkingBox.js`: To display AI reasoning
+  - [x] `<RevisionDropdown>` in `src/components/RevisionDropdown.js`: To manage model versions
 - [ ] **Implement chat functionality**
   - [ ] Add state for `messages` and `input` in `<ChatWindow>`
   - [ ] Render a `<textarea>` for input and a `<button>` to submit
