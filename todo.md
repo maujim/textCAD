@@ -31,10 +31,10 @@
   - [x] Add state for `messages` and `input` in `<ChatWindow>`
   - [x] Render a `<textarea>` for input and a `<button>` to submit
   - [x] Display chat messages in a scrollable `<div>`
-- [ ] **Implement model clicking**
-  - [ ] Add an `onClick` handler in `<ModelViewer>` using `useThree` to get raycaster data
-  - [ ] Identify the clicked face using OpenCascade.js intersection logic
-  - [ ] Store the selected face ID in component state
+- [x] **Implement model clicking**
+  - [x] Add an `onClick` handler in `<ModelViewer>` using `useThree` to get raycaster data
+  - [x] Identify the clicked face using OpenCascade.js intersection logic
+  - [x] Store the selected face ID in component state
 - [ ] **Handle command processing**
   - [ ] Send user commands and selected face ID to the AI API directly from the client
   - [ ] Parse the AI response (e.g., JSON with modification instructions)
