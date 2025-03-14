@@ -1,12 +1,19 @@
 import opencascade from 'opencascade.js/dist/opencascade.wasm.js';
 import opencascadeWasm from 'opencascade.js/dist/opencascade.wasm.wasm?url';
 
-oc = opencascade({
-  locateFile: () => opencascadeWasm,
-});
+let occPromise = null;
 
-export const createSampleCube = async () => {
-  const occ = await initOC();
+const initOCC = async () => {
+  if (!occPromise) {
+    occPromise = opencascade({
+      locateFile: () => opencascadeWasm,
+    });
+  }
+  return occPromise;
+};
+
+export const createSampleCube22 = async () => {
+  const occ = await initOCC();
 
   // Create a box with dimensions 10x10x10
   const box = new occ.BRepPrimAPI_MakeBox_1(10, 10, 10);
@@ -22,7 +29,24 @@ export const createSampleCube = async () => {
 
   // Extract triangulation data
   const explorer = new occ.TopExp_Explorer_1();
-  for (explorer.Init(shape, occ.TopAbs_FACE); explorer.More(); explorer.Next()) {
+
+  console.debug(shape);
+  console.debug(mesh);
+  console.debug(box);
+  console.debug(explorer);
+
+  const f = occ.TopAbs_ShapeEnum.TopAbs_FACE;
+  const s = occ.TopAbs_ShapeEnum.TopAbs_SHAPE;
+
+  console.debug(f, s);
+
+  explorer.Init(shape, f, s);
+
+  let loop_i = 0;
+  while (explorer.More()) {
+    console.log('face number is ', loop_i);
+    loop_i += 1;
+
     const face = occ.TopoDS.Face_1(explorer.Current());
     const location = new occ.TopLoc_Location_1();
     const triangulation = occ.BRep_Tool.Triangulation(face, location);
@@ -37,6 +61,8 @@ export const createSampleCube = async () => {
         vertices.push(point.X(), point.Y(), point.Z());
       }
 
+      console.log(triangles.Length());
+
       // Add triangles
       for (let i = 1; i <= triangles.Length(); i++) {
         const triangle = triangles.Value(i);
@@ -45,10 +71,12 @@ export const createSampleCube = async () => {
         indices.push(triangle.Value(3) - 1);
       }
     }
+    explorer.Next();
   }
 
+  console.log(vertices, indices);
   return {
     vertices: new Float32Array(vertices),
-    indices: new Uint32Array(indices),
+    indices: new Uint16Array(indices),
   };
 };

@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { createSampleCube, getFaceInfo } from '../utils/threeUtils';
+import { createSampleCube22 } from '../utils/cadUtils.js';
 import * as THREE from 'three';
 
 function Model({ geometry, onFaceClick, selectedFace }) {
@@ -31,6 +32,7 @@ function Model({ geometry, onFaceClick, selectedFace }) {
 
   if (!geometry) return null;
 
+
   return (
     <mesh onClick={handleClick}>
       <bufferGeometry>
@@ -42,7 +44,8 @@ function Model({ geometry, onFaceClick, selectedFace }) {
         />
         <bufferAttribute attach="index" array={geometry.indices} count={geometry.indices.length} itemSize={1} />
       </bufferGeometry>
-      <meshStandardMaterial color={selectedFace !== null ? '#4a90e2' : '#808080'} roughness={0.7} metalness={0.3} />
+
+      <meshStandardMaterial color={selectedFace !== null ? 'green' : 'red'} roughness={0.7} metalness={0.3} />
     </mesh>
   );
 }
@@ -52,8 +55,15 @@ export default function ModelViewer({ onFaceSelect }) {
   const [selectedFace, setSelectedFace] = useState(null);
 
   useEffect(() => {
-    const cubeGeometry = createSampleCube();
-    setGeometry(cubeGeometry);
+    async function loadGeometry() {
+      try {
+        const cubeGeometry = await createSampleCube22();
+        setGeometry(cubeGeometry);
+      } catch (error) {
+        console.error('Error creating geometry:', error);
+      }
+    }
+    loadGeometry();
   }, []);
 
   const handleFaceClick = useCallback(
