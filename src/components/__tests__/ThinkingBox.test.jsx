@@ -12,7 +12,7 @@ describe('ThinkingBox', () => {
   it('renders with reasoning text', () => {
     const reasoning = 'Adding a hole to the selected face';
     render(<ThinkingBox reasoning={reasoning} />);
-    
+
     expect(screen.getByText('AI Reasoning')).toBeInTheDocument();
     expect(screen.getByText(reasoning)).toBeInTheDocument();
   });
@@ -20,17 +20,17 @@ describe('ThinkingBox', () => {
   it('can be closed', () => {
     const reasoning = 'Adding a hole to the selected face';
     render(<ThinkingBox reasoning={reasoning} />);
-    
+
     const closeButton = screen.getByRole('button');
     fireEvent.click(closeButton);
-    
+
     expect(screen.queryByText('AI Reasoning')).not.toBeInTheDocument();
   });
 
   it('handles long text with scrolling', () => {
     const longReasoning = 'A'.repeat(1000); // Long text that should trigger scrolling
     render(<ThinkingBox reasoning={longReasoning} />);
-    
+
     const textContainer = screen.getByText(longReasoning).parentElement;
     expect(textContainer).toHaveStyle({ maxHeight: '200px', overflowY: 'auto' });
   });
@@ -38,7 +38,7 @@ describe('ThinkingBox', () => {
   it('updates when reasoning changes', () => {
     const { rerender } = render(<ThinkingBox reasoning="Initial reasoning" />);
     expect(screen.getByText('Initial reasoning')).toBeInTheDocument();
-    
+
     rerender(<ThinkingBox reasoning="Updated reasoning" />);
     expect(screen.getByText('Updated reasoning')).toBeInTheDocument();
   });

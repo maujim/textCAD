@@ -3,18 +3,20 @@ import { useState } from 'react';
 export default function RevisionDropdown({ revisions = [], onSelect }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelect = (revision) => {
+  const handleSelect = revision => {
     onSelect?.(revision);
     setIsOpen(false);
   };
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: '20px',
-      right: '20px',
-      width: '200px',
-    }}>
+    <div
+      style={{
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        width: '200px',
+      }}
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
         style={{
@@ -34,18 +36,18 @@ export default function RevisionDropdown({ revisions = [], onSelect }) {
       </button>
 
       {isOpen && (
-        <div style={{
-          marginTop: '4px',
-          backgroundColor: 'white',
-          border: '1px solid #ddd',
-          borderRadius: '4px',
-          maxHeight: '300px',
-          overflowY: 'auto',
-        }}>
+        <div
+          style={{
+            marginTop: '4px',
+            backgroundColor: 'white',
+            border: '1px solid #ddd',
+            borderRadius: '4px',
+            maxHeight: '300px',
+            overflowY: 'auto',
+          }}
+        >
           {revisions.length === 0 ? (
-            <div style={{ padding: '8px', color: '#666', textAlign: 'center' }}>
-              No revisions yet
-            </div>
+            <div style={{ padding: '8px', color: '#666', textAlign: 'center' }}>No revisions yet</div>
           ) : (
             revisions.map((revision, index) => (
               <button
@@ -65,9 +67,7 @@ export default function RevisionDropdown({ revisions = [], onSelect }) {
                 }}
               >
                 <span style={{ fontSize: '14px' }}>{revision.description}</span>
-                <span style={{ fontSize: '12px', color: '#666' }}>
-                  {new Date(revision.timestamp).toLocaleString()}
-                </span>
+                <span style={{ fontSize: '12px', color: '#666' }}>{new Date(revision.timestamp).toLocaleString()}</span>
               </button>
             ))
           )}

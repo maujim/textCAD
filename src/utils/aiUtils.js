@@ -9,18 +9,22 @@ export async function processCommand(command, selectedFace) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        contents: [{
-          parts: [{
-            text: `Process this CAD model modification command: "${command}". Selected face: ${selectedFace}. 
+        contents: [
+          {
+            parts: [
+              {
+                text: `Process this CAD model modification command: "${command}". Selected face: ${selectedFace}. 
                    Return a JSON response with the following structure:
                    {
                      "action": "add_hole" | "extrude" | "fillet" | etc,
                      "parameters": { ... action specific parameters ... },
                      "reasoning": "explanation of what will be done"
-                   }`
-          }]
-        }]
-      })
+                   }`,
+              },
+            ],
+          },
+        ],
+      }),
     });
 
     if (!response.ok) {
@@ -29,7 +33,7 @@ export async function processCommand(command, selectedFace) {
 
     const data = await response.json();
     const text = data.candidates[0].content.parts[0].text;
-    
+
     try {
       // Extract JSON from the response text
       const jsonStr = text.match(/\{[\s\S]*\}/)[0];

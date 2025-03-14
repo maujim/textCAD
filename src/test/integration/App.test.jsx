@@ -4,15 +4,15 @@ import App from '../../App';
 
 // Mock the AI utils
 vi.mock('../../utils/aiUtils', () => ({
-  processCommand: vi.fn()
+  processCommand: vi.fn(),
 }));
 
 // Mock OpenCascade.js utils
 vi.mock('../../utils/cadUtils', () => ({
   createSampleCube: vi.fn().mockResolvedValue({
     vertices: new Float32Array([0, 0, 0, 1, 1, 1]),
-    indices: new Uint32Array([0, 1, 2])
-  })
+    indices: new Uint32Array([0, 1, 2]),
+  }),
 }));
 
 // Mock Three.js and react-three-fiber
@@ -22,22 +22,24 @@ vi.mock('@react-three/fiber', () => ({
     camera: {},
     raycaster: {
       setFromCamera: vi.fn(),
-      intersectObject: () => [{
-        faceIndex: 2
-      }]
-    }
-  })
+      intersectObject: () => [
+        {
+          faceIndex: 2,
+        },
+      ],
+    },
+  }),
 }));
 
 vi.mock('@react-three/drei', () => ({
-  OrbitControls: () => <div data-testid="orbit-controls" />
+  OrbitControls: () => <div data-testid="orbit-controls" />,
 }));
 
 describe('App Integration', () => {
   const mockAIResponse = {
     action: 'add_hole',
     parameters: { radius: 5 },
-    reasoning: 'Adding a hole with radius 5'
+    reasoning: 'Adding a hole with radius 5',
   };
 
   beforeEach(() => {
@@ -59,7 +61,7 @@ describe('App Integration', () => {
     // 2. Enter and submit a command
     const input = screen.getByPlaceholderText(/Type your message/);
     const submitButton = screen.getByText('Send');
-    
+
     fireEvent.change(input, { target: { value: 'Add a hole here' } });
     fireEvent.click(submitButton);
 
@@ -86,7 +88,7 @@ describe('App Integration', () => {
 
     const input = screen.getByPlaceholderText(/Type your message/);
     const submitButton = screen.getByText('Send');
-    
+
     fireEvent.change(input, { target: { value: 'Add a hole here' } });
     fireEvent.click(submitButton);
 
@@ -107,7 +109,7 @@ describe('App Integration', () => {
   it('tests error handling scenarios', async () => {
     // Mock AI processing to fail
     vi.mocked(processCommand).mockRejectedValue(new Error('Invalid modification'));
-    
+
     render(<App />);
 
     // 1. Select a face
@@ -117,7 +119,7 @@ describe('App Integration', () => {
     // 2. Submit a command that will fail
     const input = screen.getByPlaceholderText(/Type your message/);
     const submitButton = screen.getByText('Send');
-    
+
     fireEvent.change(input, { target: { value: 'Make an impossible modification' } });
     fireEvent.click(submitButton);
 
@@ -128,11 +130,7 @@ describe('App Integration', () => {
   });
 
   it('tests user acceptance scenarios with sample commands', async () => {
-    const commands = [
-      'Add a screw hole',
-      'Move this part up',
-      'Make this face larger'
-    ];
+    const commands = ['Add a screw hole', 'Move this part up', 'Make this face larger'];
 
     render(<App />);
 
@@ -144,7 +142,7 @@ describe('App Integration', () => {
     for (const command of commands) {
       const input = screen.getByPlaceholderText(/Type your message/);
       const submitButton = screen.getByText('Send');
-      
+
       fireEvent.change(input, { target: { value: command } });
       fireEvent.click(submitButton);
 

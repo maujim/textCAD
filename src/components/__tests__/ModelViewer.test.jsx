@@ -9,15 +9,17 @@ vi.mock('@react-three/fiber', () => ({
     camera: {},
     raycaster: {
       setFromCamera: vi.fn(),
-      intersectObject: () => [{
-        faceIndex: 2
-      }]
-    }
-  })
+      intersectObject: () => [
+        {
+          faceIndex: 2,
+        },
+      ],
+    },
+  }),
 }));
 
 vi.mock('@react-three/drei', () => ({
-  OrbitControls: () => <div data-testid="orbit-controls" />
+  OrbitControls: () => <div data-testid="orbit-controls" />,
 }));
 
 describe('ModelViewer', () => {
