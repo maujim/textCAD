@@ -1,4 +1,4 @@
-import { initOpenCascade } from 'opencascade.js';
+import initOpenCascade from 'opencascade.js';
 
 let oc = null;
 

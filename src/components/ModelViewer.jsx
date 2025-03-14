@@ -1,10 +1,10 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { createSampleCube } from '../utils/cadUtils';
+import { createSampleCube, getFaceInfo } from '../utils/threeUtils';
 import * as THREE from 'three';
 
-function Model({ geometry, onFaceClick }) {
+function Model({ geometry, onFaceClick, selectedFace }) {
   const { camera, raycaster } = useThree();
   
   const handleClick = useCallback((event) => {
@@ -22,8 +22,7 @@ function Model({ geometry, onFaceClick }) {
     const intersects = raycaster.intersectObject(event.object, true);
     
     if (intersects.length > 0) {
-      const faceIndex = Math.floor(intersects[0].faceIndex / 2); // Divide by 2 because OpenCascade triangulates faces
-      onFaceClick(faceIndex);
+      onFaceClick(intersects[0].faceIndex);
     }
   }, [camera, raycaster, onFaceClick]);
 
@@ -45,36 +44,39 @@ function Model({ geometry, onFaceClick }) {
           itemSize={1}
         />
       </bufferGeometry>
-      <meshStandardMaterial color="lightblue" />
+      <meshStandardMaterial 
+        color={selectedFace !== null ? "#4a90e2" : "#808080"}
+        roughness={0.7}
+        metalness={0.3}
+      />
     </mesh>
   );
 }
 
-export default function ModelViewer() {
+export default function ModelViewer({ onFaceSelect }) {
   const [geometry, setGeometry] = useState(null);
   const [selectedFace, setSelectedFace] = useState(null);
 
   useEffect(() => {
-    const loadModel = async () => {
-      const cubeGeometry = await createSampleCube();
-      setGeometry(cubeGeometry);
-    };
-    
-    loadModel();
+    const cubeGeometry = createSampleCube();
+    setGeometry(cubeGeometry);
   }, []);
 
   const handleFaceClick = useCallback((faceIndex) => {
+    const faceInfo = getFaceInfo(faceIndex);
     setSelectedFace(faceIndex);
-    console.log('Selected face:', faceIndex);
-  }, []);
+    onFaceSelect?.(faceInfo);
+  }, [onFaceSelect]);
 
   return (
-    <div style={{ width: '100%', height: '100vh' }}>
+    <div style={{ width: '100%', height: '400px', backgroundColor: '#f5f5f5', borderRadius: '8px' }}>
       <Canvas camera={{ position: [20, 20, 20], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        <Model geometry={geometry} onFaceClick={handleFaceClick} />
-        <OrbitControls makeDefault />
+        <ambientLight intensity={0.6} />
+        <pointLight position={[10, 10, 10]} intensity={1.5} />
+        <pointLight position={[-10, -10, -10]} intensity={0.5} />
+        <Model geometry={geometry} onFaceClick={handleFaceClick} selectedFace={selectedFace} />
+        <OrbitControls enableDamping dampingFactor={0.05} />
+        <gridHelper args={[20, 20, '#888888', '#444444']} />
       </Canvas>
       {selectedFace !== null && (
         <div style={{
@@ -82,11 +84,13 @@ export default function ModelViewer() {
           top: '20px',
           left: '20px',
           background: 'white',
-          padding: '8px',
-          borderRadius: '4px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+          padding: '12px',
+          borderRadius: '6px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          fontFamily: 'system-ui, -apple-system, sans-serif',
+          fontSize: '14px'
         }}>
-          Selected Face: {selectedFace}
+          {getFaceInfo(selectedFace).name}
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import wasm from 'vite-plugin-wasm'
 import topLevelAwait from 'vite-plugin-top-level-await'
+import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -19,8 +20,7 @@ export default defineConfig({
           'three': ['three', '@react-three/fiber', '@react-three/drei'],
           'vendor': ['react', 'react-dom']
         }
-      },
-      external: ['opencascade.js']
+      }
     },
     // Enable source maps for debugging
     sourcemap: true,
@@ -42,15 +42,19 @@ export default defineConfig({
   // Optimize dev server
   server: {
     hmr: true,
-    port: 3000
+    port: 3000,
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp'
+    }
   },
   // Handle WASM imports
   optimizeDeps: {
-    exclude: ['opencascade.js'],
-    esbuildOptions: {
-      supported: {
-        'top-level-await': true
-      }
+    exclude: ['opencascade.js']
+  },
+  resolve: {
+    alias: {
+      'opencascade.js': resolve(__dirname, 'node_modules/opencascade.js')
     }
   }
 })
