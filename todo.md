@@ -79,10 +79,10 @@
   - [x] Gather feedback on usability and adjust UI if needed
 
 ## Deployment
-- [ ] **Prepare the application for production**
-  - [ ] Optimize the React build with `npm run build`
-  - [ ] Ensure OpenCascade.js WASM files are included in the build
-  - [ ] Store API keys securely (e.g., in environment variables, despite client-side usage)
+- [x] **Prepare the application for production**
+  - [x] Optimize the React build with `npm run build`
+  - [x] Ensure OpenCascade.js WASM files are included in the build
+  - [x] Store API keys securely (e.g., in environment variables, despite client-side usage)
 - [ ] **Set up hosting**
   - [ ] Choose a static hosting platform (e.g., Vercel, Netlify)
   - [ ] Deploy the built app to the platform

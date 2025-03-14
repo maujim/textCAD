@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useState, useCallback } from 'react'
 import './App.css'
 import ModelViewer from './components/ModelViewer'
