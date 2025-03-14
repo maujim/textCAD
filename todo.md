@@ -15,10 +15,10 @@
 - [x] **Set up the React application**
   - [x] Initialize the React app with `npx create-react-app cad-app`
   - [x] Install dependencies: `npm install three @react-three/fiber @react-three/drei opencascade.js`
-- [ ] **Integrate OpenCascade.js for CAD processing**
-  - [ ] Import OpenCascade.js into the project (e.g., via CDN or npm)
-  - [ ] Load a sample CAD model (e.g., a cube created programmatically with `BRepPrimAPI_MakeBox`)
-  - [ ] Implement functions to generate a mesh from the CAD model for rendering
+- [x] **Integrate OpenCascade.js for CAD processing**
+  - [x] Import OpenCascade.js into the project (e.g., via CDN or npm)
+  - [x] Load a sample CAD model (e.g., a cube created programmatically with `BRepPrimAPI_MakeBox`)
+  - [x] Implement functions to generate a mesh from the CAD model for rendering
 - [ ] **Set up Three.js for 3D rendering**
   - [ ] Create a `<ModelViewer>` component in `src/components/ModelViewer.js`
   - [ ] Render the initial CAD model mesh using `<mesh>` and `BufferGeometry`
