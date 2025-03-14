@@ -27,10 +27,10 @@
   - [x] `<ChatWindow>` in `src/components/ChatWindow.js`: For user input and conversation history
   - [x] `<ThinkingBox>` in `src/components/ThinkingBox.js`: To display AI reasoning
   - [x] `<RevisionDropdown>` in `src/components/RevisionDropdown.js`: To manage model versions
-- [ ] **Implement chat functionality**
-  - [ ] Add state for `messages` and `input` in `<ChatWindow>`
-  - [ ] Render a `<textarea>` for input and a `<button>` to submit
-  - [ ] Display chat messages in a scrollable `<div>`
+- [x] **Implement chat functionality**
+  - [x] Add state for `messages` and `input` in `<ChatWindow>`
+  - [x] Render a `<textarea>` for input and a `<button>` to submit
+  - [x] Display chat messages in a scrollable `<div>`
 - [ ] **Implement model clicking**
   - [ ] Add an `onClick` handler in `<ModelViewer>` using `useThree` to get raycaster data
   - [ ] Identify the clicked face using OpenCascade.js intersection logic
