@@ -1,23 +1,53 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { processCommand } from '../utils/aiUtils';
 
-export default function ChatWindow() {
+export default function ChatWindow({ selectedFace, onUpdateModel, onUpdateReasoning }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || isProcessing) return;
 
-    const newMessage = {
+    const userMessage = {
       text: input,
       sender: 'user',
       timestamp: new Date().toISOString(),
     };
 
-    setMessages([...messages, newMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInput('');
-    // TODO: Handle AI response
-  };
+    setIsProcessing(true);
+
+    try {
+      const response = await processCommand(input, selectedFace);
+      
+      // Update reasoning in ThinkingBox
+      onUpdateReasoning?.(response.reasoning);
+
+      // Update the model based on the AI response
+      onUpdateModel?.(response.action, response.parameters);
+
+      // Add AI response to chat
+      const aiMessage = {
+        text: response.reasoning,
+        sender: 'ai',
+        timestamp: new Date().toISOString(),
+      };
+      setMessages(prev => [...prev, aiMessage]);
+    } catch (error) {
+      // Add error message to chat
+      const errorMessage = {
+        text: `Error: ${error.message}`,
+        sender: 'system',
+        timestamp: new Date().toISOString(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsProcessing(false);
+    }
+  }, [input, selectedFace, onUpdateModel, onUpdateReasoning, isProcessing]);
 
   return (
     <div className="chat-window" style={{

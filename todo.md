@@ -35,33 +35,33 @@
   - [x] Add an `onClick` handler in `<ModelViewer>` using `useThree` to get raycaster data
   - [x] Identify the clicked face using OpenCascade.js intersection logic
   - [x] Store the selected face ID in component state
-- [ ] **Handle command processing**
-  - [ ] Send user commands and selected face ID to the AI API directly from the client
-  - [ ] Parse the AI response (e.g., JSON with modification instructions)
-  - [ ] Apply modifications to the CAD model using OpenCascade.js (e.g., add a hole)
-  - [ ] Generate an updated mesh and refresh the 3D viewer
-- [ ] **Display AI reasoning**
-  - [ ] Update `<ThinkingBox>` with reasoning from the AI response
-  - [ ] Ensure the box scrolls if reasoning text is long
-- [ ] **Implement revision history**
-  - [ ] Store model states in a local array (e.g., `revisions`) with timestamps
-  - [ ] Populate `<RevisionDropdown>` with revision options
-  - [ ] Update the model and mesh when a revision is selected
-- [ ] **Implement error handling**
-  - [ ] Handle invalid AI responses or failed modifications
-  - [ ] Display user-friendly error messages in `<ChatWindow>` (e.g., "Cannot add a hole here")
+- [x] **Handle command processing**
+  - [x] Send user commands and selected face ID to the AI API directly from the client
+  - [x] Parse the AI response (e.g., JSON with modification instructions)
+  - [x] Apply modifications to the CAD model using OpenCascade.js (e.g., add a hole)
+  - [x] Generate an updated mesh and refresh the 3D viewer
+- [x] **Display AI reasoning**
+  - [x] Update `<ThinkingBox>` with reasoning from the AI response
+  - [x] Ensure the box scrolls if reasoning text is long
+- [x] **Implement revision history**
+  - [x] Store model states in a local array (e.g., `revisions`) with timestamps
+  - [x] Populate `<RevisionDropdown>` with revision options
+  - [x] Update the model and mesh when a revision is selected
+- [x] **Implement error handling**
+  - [x] Handle invalid AI responses or failed modifications
+  - [x] Display user-friendly error messages in `<ChatWindow>` (e.g., "Cannot add a hole here")
 
 ## Integration
-- [ ] **Connect UI components**
-  - [ ] Combine `<ModelViewer>`, `<ChatWindow>`, `<ThinkingBox>`, and `<RevisionDropdown>` in `App.js`
-  - [ ] Ensure state updates (e.g., new mesh, AI reasoning) propagate correctly
-- [ ] **Integrate with the AI API**
-  - [ ] Configure API keys for Google Gemini (or alternative LLM) in a `.env` file
-  - [ ] Use `fetch` to make API calls from the client (e.g., `POST` to Gemini endpoint)
-  - [ ] Test the full flow: user command → AI response → model update → UI refresh
-- [ ] **Ensure real-time updates**
-  - [ ] Verify the 3D viewer updates immediately after modifications
-  - [ ] Confirm chat and thinking box reflect the latest interaction
+- [x] **Connect UI components**
+  - [x] Combine `<ModelViewer>`, `<ChatWindow>`, `<ThinkingBox>`, and `<RevisionDropdown>` in `App.js`
+  - [x] Ensure state updates (e.g., new mesh, AI reasoning) propagate correctly
+- [x] **Integrate with the AI API**
+  - [x] Configure API keys for Google Gemini (or alternative LLM) in a `.env` file
+  - [x] Use `fetch` to make API calls from the client (e.g., `POST` to Gemini endpoint)
+  - [x] Test the full flow: user command → AI response → model update → UI refresh
+- [x] **Ensure real-time updates**
+  - [x] Verify the 3D viewer updates immediately after modifications
+  - [x] Confirm chat and thinking box reflect the latest interaction
 
 ## Testing
 - [ ] **Unit tests for individual components**
