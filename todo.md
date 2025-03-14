@@ -2,19 +2,19 @@
 
 ## Project Setup
 - [ ] **Set up the development environment**
-  - [ ] Install Node.js and npm
-  - [ ] Install a code editor (e.g., VSCode)
-- [ ] **Install necessary dependencies**
-  - [ ] Frontend: React, react-three-fiber, Three.js, OpenCascade.js
-  - [ ] AI: Google Gemini API (or alternative LLM client library for JavaScript)
-- [ ] **Create the project structure**
-  - [ ] Create a new React app (e.g., `npx create-react-app cad-app`)
-  - [ ] Add a `src` folder structure: `components/`, `utils/`, `assets/`
+  - [x] Install Node.js and npm
+  - [x] Install a code editor (e.g., VSCode)
+- [x] **Install necessary dependencies**
+  - [x] Frontend: React, react-three-fiber, Three.js, OpenCascade.js
+  - [x] AI: Google Gemini API (or alternative LLM client library for JavaScript)
+- [x] **Create the project structure**
+  - [x] Create a new React app (e.g., `npx create-react-app cad-app`)
+  - [x] Add a `src` folder structure: `components/`, `utils/`, `assets/`
 
 ## Frontend Development
-- [ ] **Set up the React application**
-  - [ ] Initialize the React app with `npx create-react-app cad-app`
-  - [ ] Install dependencies: `npm install three @react-three/fiber @react-three/drei opencascade.js`
+- [x] **Set up the React application**
+  - [x] Initialize the React app with `npx create-react-app cad-app`
+  - [x] Install dependencies: `npm install three @react-three/fiber @react-three/drei opencascade.js`
 - [ ] **Integrate OpenCascade.js for CAD processing**
   - [ ] Import OpenCascade.js into the project (e.g., via CDN or npm)
   - [ ] Load a sample CAD model (e.g., a cube created programmatically with `BRepPrimAPI_MakeBox`)
